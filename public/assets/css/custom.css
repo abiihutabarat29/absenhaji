@@ -1,0 +1,45 @@
+.layout-navbar .container-xxl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.d-flex.align-items-center.me-auto {
+    margin-right: auto;
+}
+
+.navbar-nav.ms-auto {
+    margin-left: auto;
+}
+
+.card-body-run {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 35px;
+}
+
+.card-body-live {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 45px;
+}
+
+.marquee-container {
+    flex: 1;
+    overflow: hidden;
+}
+
+.marquee-container marquee {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.bx-book {
+    margin-right: 10px;
+}
+
+.green-option {
+    background-color: lightgreen;
+}
