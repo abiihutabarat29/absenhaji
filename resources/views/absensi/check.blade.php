@@ -51,10 +51,11 @@
                                             aria-hidden="true"></span>
                                         <span class="btn-text">Simpan</span>
                                     </button>
-                                    <button type="button" class="btn btn-success me-2" id="selesaiBtn">
+                                    <button type="button" class="btn btn-success me-2 selesai"
+                                        data-id="{{ $tugas->id }}">
                                         <span class="spinner-border spinner-border-sm d-none" role="status"
                                             aria-hidden="true"></span>
-                                        <span class="btn-text">Selesai</span>
+                                        <span class="btn-text">Selesai dan Konfirmasi</span>
                                     </button>
                                 @endif
                                 <a href="{{ route('absensi.index') }}" class="btn btn-outline-secondary">Kembali</a>
@@ -65,6 +66,9 @@
             </div>
         </div>
     </form>
+@endsection
+@section('modal')
+    <x-konfirmasi></x-konfirmasi>
 @endsection
 @section('script')
     <script type="text/javascript">
@@ -122,13 +126,69 @@
                 });
             });
 
-            $('#selesaiBtn').on('click', function() {
-                var $selesaiBtn = $(this);
-                var $spinner = $selesaiBtn.find('.spinner-border');
-                var $btnText = $selesaiBtn.find('.btn-text');
+            // $('#selesaiBtn').on('click', function() {
+            //     var $selesaiBtn = $(this);
+            //     var $spinner = $selesaiBtn.find('.spinner-border');
+            //     var $btnText = $selesaiBtn.find('.btn-text');
 
-                $spinner.removeClass('d-none');
-                $btnText.css('display', 'none');
+            //     $spinner.removeClass('d-none');
+            //     $btnText.css('display', 'none');
+
+            //     $.ajax({
+            //         url: "{{ route('absensi.konfirmasi', $tugas->id) }}",
+            //         method: "POST",
+            //         data: {
+            //             _token: "{{ csrf_token() }}",
+            //         },
+            //         success: function(response) {
+            //             if (response.success) {
+            //                 alertToastr(response.success);
+            //                 setTimeout(function() {
+            //                     window.location.href = "{{ route('absensi.index') }}";
+            //                 }, 1500);
+            //             }
+
+            //             $spinner.addClass('d-none');
+            //             $btnText.css('display', 'inline');
+            //         },
+            //         error: function(response) {
+            //             $spinner.addClass('d-none');
+            //             $btnText.css('display', 'inline');
+
+            //             const res = response.responseJSON;
+            //             if (res?.error) {
+            //                 alertToastrError(res.error);
+            //             } else {
+            //                 alertToastrError('Terjadi kesalahan saat konfirmasi tugas.');
+            //             }
+            //         }
+            //     });
+            // });
+
+            $("body").on('click', '.selesai', function() {
+                var id = $(this).data('id');
+                $("#modal-konfirmasi").data('id', id).modal("show");
+            });
+
+            $("#modal-konfirmasi").on('hidden.bs.modal', function() {
+                $(this).removeData('id');
+                $("#konfirmasiBtn").html("Konfirmasi").removeAttr("disabled");
+            });
+
+            $("#konfirmasiBtn").click(function(e) {
+                e.preventDefault();
+
+                var id = $("#modal-konfirmasi").data('id');
+                if (!id) {
+                    return;
+                }
+
+                var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                $(this)
+                    .html(
+                        "<span class='spinner-border spinner-border-sm'></span><span class='visually-hidden'></span>"
+                    )
+                    .attr("disabled", "disabled");
 
                 $.ajax({
                     url: "{{ route('absensi.konfirmasi', $tugas->id) }}",
@@ -137,26 +197,28 @@
                         _token: "{{ csrf_token() }}",
                     },
                     success: function(response) {
-                        if (response.success) {
-                            alertToastr(response.success);
-                            setTimeout(function() {
-                                window.location.href = "{{ route('absensi.index') }}";
-                            }, 1500);
-                        }
+                        alertToastr(response.success);
+                        setTimeout(function() {
+                            window.location.href =
+                                "{{ route('absensi.index') }}";
+                        }, 1500);
 
-                        $spinner.addClass('d-none');
-                        $btnText.css('display', 'inline');
+                        $("#konfirmasiBtn")
+                            .html("Konfirmasi")
+                            .removeAttr("disabled");
+                        $("#modal-konfirmasi").modal("hide");
                     },
                     error: function(response) {
-                        $spinner.addClass('d-none');
-                        $btnText.css('display', 'inline');
-
                         const res = response.responseJSON;
                         if (res?.error) {
                             alertToastrError(res.error);
                         } else {
                             alertToastrError('Terjadi kesalahan saat konfirmasi tugas.');
                         }
+                        $("#konfirmasiBtn")
+                            .html("Konfirmasi")
+                            .removeAttr("disabled");
+
                     }
                 });
             });

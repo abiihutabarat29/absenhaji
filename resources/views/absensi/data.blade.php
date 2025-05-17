@@ -10,7 +10,7 @@
                         @endphp
                         <div class="col-md-6 col-lg-4">
                             <div class="card mb-3">
-                                <div class="card-body">
+                                <div class="card-body mb-2">
                                     <div class="d-flex justify-content-between align-items-start">
                                         <h5 class="card-title mb-1">{{ $item->title }}</h5>
                                         @if ($statusSelesai == 1)
@@ -37,12 +37,15 @@
                                         @endif
                                     @endif
                                 </div>
+                                <footer class="blockquote-footer">
+                                    dibuat oleh : Bapak {{ $item->user->name }}
+                                </footer>
                             </div>
                         </div>
                     @endforeach
                     @if (Auth::user()->role == 1)
                         <div class="buy-now">
-                            <button type="button" class="dt-button btn btn-primary btn-buy-now"" id="create">Buat
+                            <button type="button" class="dt-button btn btn-primary btn-buy-now" id="create">Buat
                                 Tugas</button>
                         </div>
                     @endif
@@ -52,7 +55,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="alert alert-warning text-center text-danger" role="alert">
-                                Tidak ada tugas ...
+                                Belum ada tugas ...
                             </div>
                             <div style="display: flex; justify-content: center; align-items: center;">
                                 <button type="button" class="dt-button btn btn-primary" id="create">Buat Tugas</button>
@@ -63,7 +66,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="alert alert-warning text-center text-danger" role="alert">
-                                Tidak ada tugas ...
+                                Belum ada tugas ...
                             </div>
                         </div>
                     </div>

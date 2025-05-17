@@ -11,21 +11,12 @@
                 <div class="divider m-0 mb-3">
                     <div class="divider-text">Baca terlebih dahulu</div>
                 </div>
-                <li>Pastikan jumlah suara sah & jumlah suara tidak sah sudah sesuai dengan C1.</li>
-                <li>Pastikan jumlah suara masuk sesuai dengan jumlah DPT atau tidak melebihi jumlah DPT pada TPS
-                    tersebut.</li>
-                <li>Pastikan kolom Cek Suara bernilai TRUE, jika masih FALSE, silahkan periksa dan edit kembali jumlah
-                    suara dengan benar.</li>
-                <li>Cek suara berstatus TRUE artinya jumlah suara masuk sudah sesuai dengan jumlah DPT atau tidak
-                    melebihi jumlah DPT pada TPS tersebut, begitupun sebaliknya jika suara berstatus FALSE artinya
-                    jumlah suara masuk tidak sesuai dengan jumlah DPT atau tidak
-                    melebihi jumlah DPT pada TPS tersebut.
-                </li>
-                <li>Jika sudah yakin jumlah suara sah dan jumlah suara tidak sah sesuai dengan C1,
+                <li>Bapak/Ibu Mohon pastikan semua jamaah haji sudah diabsen seluruhnya, jika masih ada jamaah yang
+                    belum diabsen
+                    jangan dulu menekan tombol SELESAI dan KONFIRMASI, cukup SIMPAN aja dulu.</li>
+                <li>Jika sudah yakin semua jamaah haji sudah diabsen seluruhnya,
                     silahkan KONFIRMASI.</li>
-                <li>Dengan menekan tombol KONFIRMASI, berarti anda sudah yakin data yang anda inputkan sudah benar dan
-                    dapat dipertanggungjawabkan.</li>
-                <li>Jika KONFIRMASI berhasil, maka data tidak akan bisa diubah kembali, tombol EDIT, DELETE
+                <li>Jika KONFIRMASI berhasil, maka data tidak akan bisa diubah kembali, dan tombol KERJAKAN
                     tidak akan tersedia lagi.</li>
             </div>
             <div class="modal-footer">

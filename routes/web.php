@@ -15,8 +15,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth', 'role:1'])->group(function () {
-    // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // Kelompok
     Route::resource('kelompok', KelompokController::class);
     // Peserta
